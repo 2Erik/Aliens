@@ -75,4 +75,29 @@ public class Alien {
 		System.out.println(mensaje);
 	}
 	
+	//METODO DE VALIDACION PRIVADO
+	private int sumarExtremidades(int nuevasExtremidades) {
+		return numeroBrazos + numeroPies + nuevasExtremidades;
+	}
+	
+	//METODOS AGREGAR EXTREMIDADES
+	
+	public boolean agregarBrazos(int nBrazos) {
+		if(sumarExtremidades(nBrazos) <= 10) {
+			numeroBrazos += nBrazos;
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	public boolean agregarPiernas(int nPies) {
+		if(sumarExtremidades(nPies) <= 10) {
+			numeroPies += nPies;
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 }
