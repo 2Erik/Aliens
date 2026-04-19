@@ -9,6 +9,7 @@ public class Alien {
 	private double precioExtremidades;
 	private double precioOjo;
 	private double precioCuerpo;
+	private double precioTotat = 0;
 	
 	//CONSTRUCTOR
 	public Alien(int tamanio, String color) {
@@ -81,10 +82,10 @@ public class Alien {
 	}
 	
 	//METODOS AGREGAR EXTREMIDADES
-	
 	public boolean agregarBrazos(int nBrazos) {
 		if(sumarExtremidades(nBrazos) <= 10) {
 			numeroBrazos += nBrazos;
+			calcularPreciototal();
 			return true;
 		}else {
 			return false;
@@ -94,10 +95,39 @@ public class Alien {
 	public boolean agregarPiernas(int nPies) {
 		if(sumarExtremidades(nPies) <= 10) {
 			numeroPies += nPies;
+			calcularPreciototal();
 			return true;
 		}else {
 			return false;
 		}
+	}
+	
+	//METODO PARA VALIDAR EL NUMERO DE OJOS
+	private boolean validarNumeroOjos(int limiteOjos ,int nOjos) {
+		if(numeroOjos + nOjos <= limiteOjos) {
+			numeroOjos += nOjos;
+			return true;
+		}
+		return false;
+	}
+	
+	//METODO AGREGAR OJOS
+	public boolean agregarOjos(int nOjos) {
+		if(tamanio <= 10) {
+			calcularPreciototal();
+			return validarNumeroOjos(3, nOjos);
+		}else if (tamanio > 10 && tamanio <= 20) {
+			calcularPreciototal();
+			return validarNumeroOjos(5, nOjos);
+		}else {
+			calcularPreciototal();
+			return validarNumeroOjos(7, nOjos);
+		}
+	}
+	
+	//METODO PRECIO TOTAL
+	public void calcularPreciototal() {
+		precioTotat = precioCuerpo + precioExtremidades * (numeroBrazos + numeroPies) + precioOjo * numeroOjos;
 	}
 	
 }
